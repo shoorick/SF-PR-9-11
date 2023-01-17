@@ -61,31 +61,6 @@ const personGenerator = {
             "id_10": "Мария"
         }
     }`,
-    birthYearJson: `{
-        "count": 20,
-        "list": {     
-            "id_1": "1974",
-            "id_2": "1977",
-            "id_3": "1978",
-            "id_4": "1979",
-            "id_5": "1980",
-            "id_6": "1981",
-            "id_7": "1982",
-            "id_8": "1983",
-            "id_9": "1984",
-            "id_10": "1985",
-            "id_11": "1986",
-            "id_12": "1987",
-            "id_13": "1988",
-            "id_14": "1989",
-            "id_15": "1990",
-            "id_16": "1991",
-            "id_17": "1992",
-            "id_18": "1993",
-            "id_19": "1994",
-            "id_20": "1995"
-        }
-    }`,
 
     // Константы в верхнем регистре - псевдоним для константы используются только как псевдонимы для «жёстко закодированных» значений
     GENDER_MALE: 'Мужчина',
@@ -96,10 +71,9 @@ const personGenerator = {
     randomIntNumber: (max = 1, min = 0) => Math.floor(Math.random() * (max - min + 1) + min),
     
      //  рандомный вывод пола
-     randomGender: function() {
-        
-        return (`${this.randomIntNumber}` != 1) ? this.GENDER_MALE : this.GENDER_FEMALE;
-    }, 
+
+     //return (`${this.randomIntNumber}` != 1) ? this.GENDER_MALE : this.GENDER_FEMALE;
+    
     
     // метод randomValue преобразующий строки JSON в объект JS благодаря свойству parse
         randomValue: function (json) {
@@ -110,9 +84,12 @@ const personGenerator = {
         return obj.list[prop];
     },
 
-   
+
 
     randomFirstName: function() {
+       // if (this.getPerson.person.gender[Женщина]) {
+       //     return this.randomValue(this.firstNameFeMaleJson);  
+        //}
         // firstNameMaleJson - мужские имена
         return this.randomValue(this.firstNameMaleJson);
 
@@ -126,23 +103,19 @@ const personGenerator = {
 
     },
 
-    // год ррождения
-    randomBirthYear: function() {
-        return this.randomValue(this.birthYearJson);
-    },
 
     // метод getPerson продолжает выполнение в файле init.js
     getPerson: function () {
         this.person = {};
-        //
+        // this.person.gender = this.randomGender();
         this.person.firstName = this.randomFirstName();
         this.person.surName = this.randomSurname();
-        this.person.gender = this.randomGender();
-        this.person.birthYear = this.randomBirthYear();
+        this.person.gender = (`${this.randomIntNumber}` != 1) ? this.GENDER_MALE : this.GENDER_FEMALE;
+        this.person.birthYear = this.randomIntNumber(1974, 1999);
 
         return this.person;
     }
 };
 
 console.log('randomIntNumber - ' + personGenerator.randomIntNumber());
-console.log('randomGender - ' + personGenerator.randomGender());
+//console.log('randomGender - ' + personGenerator.person.gender());
