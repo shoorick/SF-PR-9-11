@@ -7,6 +7,7 @@
 
 // personGenerator - объект  
 const personGenerator = {
+    // строка с фамилиями
     surnameJson: `{  
         "count": 15,
         "list": {
@@ -28,6 +29,7 @@ const personGenerator = {
             "id_16": "Морозов"
         }
     }`,
+    // строка с мужскими именами
     firstNameMaleJson: `{
         "count": 10,
         "list": {     
@@ -43,6 +45,7 @@ const personGenerator = {
             "id_10": "Андрей"
         }
     }`,
+    // строка с женскими именами
     firstNameFeMaleJson: `{
         "count": 10,
         "list": {     
@@ -58,25 +61,56 @@ const personGenerator = {
             "id_10": "Мария"
         }
     }`,
+    birthYearJson: `{
+        "count": 20,
+        "list": {     
+            "id_1": "1974",
+            "id_2": "1977",
+            "id_3": "1978",
+            "id_4": "1979",
+            "id_5": "1980",
+            "id_6": "1981",
+            "id_7": "1982",
+            "id_8": "1983",
+            "id_9": "1984",
+            "id_10": "1985",
+            "id_11": "1986",
+            "id_12": "1987",
+            "id_13": "1988",
+            "id_14": "1989",
+            "id_15": "1990",
+            "id_16": "1991",
+            "id_17": "1992",
+            "id_18": "1993",
+            "id_19": "1994",
+            "id_20": "1995"
+        }
+    }`,
 
     // Константы в верхнем регистре - псевдоним для константы используются только как псевдонимы для «жёстко закодированных» значений
     GENDER_MALE: 'Мужчина',
     GENDER_FEMALE: 'Женщина',
 
     // randomIntNumber - свойство объекта со значением стрелочной функции (return  не нужен т.к. есть только вычисления)
+    // метод отвечающий за случайную генерацию
     randomIntNumber: (max = 1, min = 0) => Math.floor(Math.random() * (max - min + 1) + min),
     
-
-    randomValue: function (json) {
+     //  рандомный вывод пола
+     randomGender: function() {
         
+        return (`${this.randomIntNumber}` != 1) ? this.GENDER_MALE : this.GENDER_FEMALE;
+    }, 
+    
+    // метод randomValue преобразующий строки JSON в объект JS благодаря свойству parse
+        randomValue: function (json) {
+        // строка JSON помещается в объект obj
         const obj = JSON.parse(json);
         // производим выборку для аргумента max из значений свойства count 
         const prop = `id_${this.randomIntNumber(obj.count, 1)}`;  // this = personGenerator
         return obj.list[prop];
     },
 
-    // НА ПРОВЕРЕНО рандомный вывод пола
-    // randomGender: `this.randomIntNumber() === 1 ? this.GENDER_MALE : this.GENDER_FEMALE;`, 
+   
 
     randomFirstName: function() {
         // firstNameMaleJson - мужские имена
@@ -87,18 +121,28 @@ const personGenerator = {
 
      randomSurname: function() {
         // surnameJson - фамилия
+        // происходит возврат объекта 
         return this.randomValue(this.surnameJson);
 
     },
 
+    // год ррождения
+    randomBirthYear: function() {
+        return this.randomValue(this.birthYearJson);
+    },
 
+    // метод getPerson продолжает выполнение в файле init.js
     getPerson: function () {
         this.person = {};
-        // this.person.gender = this.randomGender();
+        //
         this.person.firstName = this.randomFirstName();
         this.person.surName = this.randomSurname();
+        this.person.gender = this.randomGender();
+        this.person.birthYear = this.randomBirthYear();
+
         return this.person;
     }
 };
 
-console.log('personGenerator - ' + personGenerator.randomGender);
+console.log('randomIntNumber - ' + personGenerator.randomIntNumber());
+console.log('randomGender - ' + personGenerator.randomGender());
