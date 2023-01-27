@@ -70,9 +70,11 @@ const personGenerator = {
     // метод отвечающий за случайную генерацию
     randomIntNumber: (max = 1, min = 0) => Math.floor(Math.random() * (max - min + 1) + min),
     
-     //  рандомный вывод пола
+     //  рандомное назначение пола
 
-     //return (`${this.randomIntNumber}` != 1) ? this.GENDER_MALE : this.GENDER_FEMALE;
+     randomGender: function() {
+        return (this.randomIntNumber() === 1) ? this.GENDER_MALE : this.GENDER_FEMALE;
+     },
     
     
     // метод randomValue преобразующий строки JSON в объект JS благодаря свойству parse
@@ -107,15 +109,14 @@ const personGenerator = {
     // метод getPerson продолжает выполнение в файле init.js
     getPerson: function () {
         this.person = {};
-        // this.person.gender = this.randomGender();
+        this.person.gender = this.randomGender();
         this.person.firstName = this.randomFirstName();
         this.person.surName = this.randomSurname();
-        this.person.gender = (`${this.randomIntNumber}` != 1) ? this.GENDER_MALE : this.GENDER_FEMALE;
         this.person.birthYear = this.randomIntNumber(1974, 1999);
 
         return this.person;
     }
 };
-
+console.log();
 console.log('randomIntNumber - ' + personGenerator.randomIntNumber());
-//console.log('randomGender - ' + personGenerator.person.gender());
+console.log('randomGender - ' + personGenerator.randomGender());
