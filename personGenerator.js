@@ -11,6 +11,7 @@ const personGenerator = {
     gender: "",
     firstname: "",
     surname: "",
+    birthYear: 0,
 
     // Константы в верхнем регистре - псевдоним для константы
     // используются только как псевдонимы для «жёстко закодированных» значений
@@ -82,8 +83,8 @@ const personGenerator = {
         const index = this.randomIntNumber(array.length - 1, 0); // this = personGenerator
         return array[index];
     },
-    //  рандомное назначение пола
 
+    //  случайное назначение пола
     randomFirstName: function () {
         if (this.randomGender() === "Женщина") {
             return this.randomItem(this.femaleFirstNames);
@@ -115,7 +116,7 @@ const personGenerator = {
     },
 };
 
-console.log();
-console.log("randomIntNumber - " + personGenerator.randomIntNumber());
-console.log("randomGender - " + personGenerator.randomGender());
-console.log(" this.randomGender() " + personGenerator.randomGender());
+// console.log();
+// console.log("randomIntNumber - " + personGenerator.randomIntNumber());
+// console.log("randomGender - " + personGenerator.randomGender());
+// console.log(" this.randomGender() " + personGenerator.randomGender());
