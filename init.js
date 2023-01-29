@@ -14,7 +14,6 @@ window.onload = function()
     const initPerson = personGenerator.getPerson();
     document.getElementById('firstNameOutput').innerText = initPerson.firstName;
     document.getElementById('surNameOutput').innerText = initPerson.surName;
-    document.getElementById('surNameOutput').innerText = initPerson.surName;
     document.getElementById('birthYearOutput').innerText = initPerson.birthYear;
     
     // вывод пола
