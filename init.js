@@ -9,12 +9,14 @@
 // когда загрузилась вся страница, включая стили, картинки и другие ресурсы
 window.onload = function () {
     // personGenerator - объект со значениями мужских имён из файла personGenerator.js
-    // константа initPerson - присваеивается метод getPerson из объекта personGenerator
-    const initPerson = personGenerator.getPerson();
-    document.getElementById("firstNameOutput").innerText = initPerson.firstName;
-    document.getElementById("surNameOutput").innerText = initPerson.surName;
-    document.getElementById("birthYearOutput").innerText = initPerson.birthYear;
+    // константа person - присваивается метод getPerson из объекта personGenerator
+    const person = personGenerator.getPerson();
+    console.log(person);
+
+    document.getElementById("firstNameOutput").innerText = person.firstname;
+    document.getElementById("surNameOutput").innerText = person.surname;
+    document.getElementById("birthYearOutput").innerText = person.birthYear;
 
     // вывод пола
-    document.getElementById("genderOutput").innerText = initPerson.gender;
+    document.getElementById("genderOutput").innerText = person.gender;
 };
