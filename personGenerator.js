@@ -76,32 +76,31 @@ const personGenerator = {
         return genderLet;
     },
 
-    // метод randomValue преобразующий строки JSON в объект JS благодаря свойству parse
-    randomValue: function (json) {
-        // строка JSON помещается в объект obj
-        const obj = JSON.parse(json);
+    // метод randomItem возвращает случайный элемент массива
+    randomItem: function (array) {
         // производим выборку для аргумента max из значений свойства count
-        const prop = `id_${this.randomIntNumber(obj.count, 1)}`; // this = personGenerator
-        return obj.list[prop];
+        const index = this.randomIntNumber(array.length - 1, 0); // this = personGenerator
+        return array[index];
     },
     //  рандомное назначение пола
 
     randomFirstName: function () {
         if (this.randomGender() === "Женщина") {
-            return this.randomValue(this.femaleFirstNames);
+            return this.randomItem(this.femaleFirstNames);
         }
 
-        return this.randomValue(this.maleFirstNames);
+        return this.randomItem(this.maleFirstNames);
     },
 
     randomSurname: function () {
-        // surnameJson - фамилия
+        // surnames - массив фамилий
         // происходит возврат объекта
-        let surnameLet = this.randomValue(this.surnameJson);
-        if (this.randomGender() == "Женщина") {
-            return surnameLet + "a";
+        let surname = this.randomItem(this.surnames);
+        if (this.gender == "Женщина") {
+            surname += "a";
         }
-        return surnameLet;
+
+        this.surname = surname;
     },
 
     // метод getPerson продолжает выполнение в файле init.js
