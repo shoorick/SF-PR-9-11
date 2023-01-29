@@ -70,11 +70,12 @@ const personGenerator = {
     randomIntNumber: (max = 1, min = 0) =>
         Math.floor(Math.random() * (max - min + 1) + min),
 
+    //  случайное назначение пола
     randomGender: function () {
-        let genderLet = this.randomIntNumber()
+        let gender = this.randomIntNumber()
             ? this.GENDER_MALE
             : this.GENDER_FEMALE;
-        return genderLet;
+        return gender;
     },
 
     // метод randomItem возвращает случайный элемент массива
@@ -84,20 +85,19 @@ const personGenerator = {
         return array[index];
     },
 
-    //  случайное назначение пола
     randomFirstName: function () {
-        if (this.randomGender() === "Женщина") {
-            return this.randomItem(this.femaleFirstNames);
-        }
-
-        return this.randomItem(this.maleFirstNames);
+        return this.randomItem(
+            this.gender == this.GENDER_FEMALE
+                ? this.femaleFirstNames
+                : this.maleFirstNames
+        );
     },
 
     randomSurname: function () {
         // surnames - массив фамилий
         // происходит возврат объекта
         let surname = this.randomItem(this.surnames);
-        if (this.gender == "Женщина") {
+        if (this.gender == this.GENDER_FEMALE) {
             surname += "a";
         }
 
