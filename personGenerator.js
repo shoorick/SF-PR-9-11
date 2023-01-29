@@ -67,7 +67,7 @@ const personGenerator = {
     // методы
     // randomIntNumber - свойство объекта со значением стрелочной функции (return  не нужен т.к. есть только вычисления)
     // метод отвечающий за случайную генерацию
-    randomIntNumber: (max = 1, min = 0) =>
+    randomIntNumber: (min = 0, max = 1) =>
         Math.floor(Math.random() * (max - min + 1) + min),
 
     //  случайное назначение пола
@@ -81,7 +81,7 @@ const personGenerator = {
     // метод randomItem возвращает случайный элемент массива
     randomItem: function (array) {
         // производим выборку для аргумента max из значений свойства count
-        const index = this.randomIntNumber(array.length - 1, 0); // this = personGenerator
+        const index = this.randomIntNumber(0, array.length - 1); // this = personGenerator
         return array[index];
     },
 
