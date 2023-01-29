@@ -101,7 +101,7 @@ const personGenerator = {
             surname += "a";
         }
 
-        this.surname = surname;
+        return surname;
     },
 
     // метод getPerson продолжает выполнение в файле init.js
