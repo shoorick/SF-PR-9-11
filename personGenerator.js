@@ -105,13 +105,13 @@ const personGenerator = {
 
     // метод getPerson продолжает выполнение в файле init.js
     getPerson: function () {
-        this.person = {};
-        this.person.gender = this.randomGender();
-        this.person.firstName = this.randomFirstName();
-        this.person.surName = this.randomSurname();
-        this.person.birthYear = this.randomIntNumber(1974, 1999);
+        // this.person = {};
+        this.gender = this.randomGender();
+        this.firstname = this.randomFirstName();
+        this.surname = this.randomSurname();
+        this.birthYear = this.randomIntNumber(1974, 1999);
 
-        return this.person;
+        return this;
     },
 };
 
